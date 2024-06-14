@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body, footer {
+    margin: 0;
+    padding: 0;
+}
+
+.nav a{
+    padding: .5em;
+    color: white;
+    text-decoration: none;
+}
+
+header {
+    padding: .5em;
+    color: #000000;
+    background-color: #34a8b9;
+    background-size: cover;
+    padding-bottom: 30px;
+}
+
+main {
+    padding: .5em;
+    padding-bottom: 800px;
+}
+
+footer {
+    padding: .5em;
+    background-color: #000000;
+    margin: 0;
+    padding-bottom: 50px;
+}

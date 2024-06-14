@@ -2,36 +2,42 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="description" content="Web Repository for IPFS CIDs">
-        <title>Addition Form</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IPFS Codex | Addition Form</title>
+        <link rel="stylesheet" href="Style.css">
     </head>
     <body style="color:#383B4B;">
         <header>
+            <br>
             <h1>Addition Form</h1>
-            <nav>
-                <a href="IPFSCodex.html"><h3 style="display: inline;">Home</h3></a>
+            <nav class="nav">
+                <a href="Index.html"><h3 style="display: inline;">Home</h3></a>
                 <a href="Form.html"><h3 style="display: inline;">Add to Database</h3></a>
                 <a href="Guide.html"><h3 style="display: inline;">How To</h3></a>
                 <a href="About.html"><h3 style="display: inline;">About</h3></a>
             </nav>
-            <hr>
         </header>
         <main>
+            <hr>
             <h2>Add to Database</h2>
-            <p>Filename:</p>
-            <input type="text" placeholder="Filename.Extension">
-            <p>IPFS CID:</p> 
-            <input type="text" placeholder="b45165ed3cd437b9ffad02a2aad22a4ddc69162470e2622982889ce5826f6e3d">
-            <p>Share Link:</p>
-            <input type="text" placeholder="https://ipfs.io/ipfs/*CID*?filename=*filename*">
-            <p>Description:</p>
-            <textarea rows="4" cols="50"></textarea>
-            <p><a href="IPFSCodex.html"><h3 style="display: inline;">Back</h3></a></p>
+            <form>
+                <p>Filename:</p>
+                <input type="text" placeholder="Filename.Extension">
+                <p>IPFS CID:</p> 
+                <input type="text" placeholder="b45165ed3cd437b9ffad02a2aad22a4ddc69162470e2622982889ce5826f6e3d">
+                <p>Share Link:</p>
+                <input type="text" placeholder="https://ipfs.io/ipfs/*CID*?filename=*filename*">
+                <p>Description:</p>
+                <textarea rows="4" cols="50"></textarea>
+                <input type="submit" value="Submit">
+            </form>
+            <hr>
         </main>
         <footer>
-            <hr>
-            <a href="https://github.com/DJC5/IPFS-Codex" target="_blank"><h3 style="display: inline;">GitHub</h3></a>
-            <a href="https://ipfs.tech" target="_blank"><h3 style="display: inline;">IPFS Official</h3></a>
+            <nav class="nav">
+                <a href="https://github.com/DJC5/IPFS-Codex" target="_blank"><h3 style="display: inline;">GitHub</h3></a>
+                <a href="https://ipfs.tech" target="_blank"><h3 style="display: inline;">IPFS Official</h3></a>
+            </nav>
         </footer>
     </body>
 </html>
