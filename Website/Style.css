@@ -13,8 +13,16 @@ html, body, footer {
     text-decoration: none;
 }
 
+.nav a:first-child {
+    padding-left: 0;
+}
+
+.nav a:hover {
+    color: #18353a;
+}
+
 header {
-    padding: .5em;
+    padding: 1em;
     color: #000000;
     background-color: #34a8b9;
     background-size: cover;
@@ -22,13 +30,16 @@ header {
 }
 
 main {
-    padding: .5em;
+    padding: 1em;
     padding-bottom: 800px;
 }
 
 footer {
-    padding: .5em;
+    padding: 1em;
     background-color: #000000;
-    margin: 0;
     padding-bottom: 50px;
+}
+
+.Addition-Form input{
+    width: 390px;
 }
