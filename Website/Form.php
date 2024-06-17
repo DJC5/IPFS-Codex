@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>IPFS Codex | Addition Form</title>
+        <title>Submitted</title>
         <link rel="stylesheet" href="Style.css">
     </head>
     <body style="color:#383B4B;">
@@ -19,22 +19,13 @@
         </header>
         <main>
             <hr>
-            <h2>Add to Database</h2>
-            
-                <form action="Form.php" method="POST" class="Addition-Form">
-                    <p>Filename:</p>
-                    <input type="text" placeholder="Filename.Extension" name="filename">
-                    <p>IPFS CID:</p> 
-                    <input type="text" placeholder="b45165ed3cd437b9ffad02a2aad22a4ddc69162470e2622982889ce5826f6e3d" name="cid">
-                    <p>Share Link(optional):</p>
-                    <input type="text" placeholder="https://ipfs.io/ipfs/*CID*?filename=*filename*" name="link">
-                    <p>Description(optional):</p>
-                    <textarea rows="4" cols="50" name="description"></textarea>
-                    <div><input class="btn" type="submit" value="Submit"></div>
-                </form>
-            <script src="Form.js"></script>
-            </script>
-            <hr>
+            <h3><i>Submitted<i></h3>
+            <?php
+            $filename = $_POST['filename'];
+            $cid = $_POST['cid'];
+            $link = $_POST['link'];
+            $description = $_POST['description'];
+            ?>
         </main>
         <footer>
             <nav class="nav">
