@@ -19,12 +19,32 @@
         </header>
         <main>
             <hr>
-            <h3><i>Submitted<i></h3>
             <?php
             $filename = $_POST['filename'];
             $cid = $_POST['cid'];
             $link = $_POST['link'];
             $description = $_POST['description'];
+            $extension = pathinfo($filename, PATHINFO_EXTENSION);
+            //Authentication
+            if ($filename == "" || $cid == "") {
+                echo "Please fill out all the required fields";
+                exit();
+            }
+            $extension = pathinfo($filename, PATHINFO_EXTENSION);
+            $filename = pathinfo($filename, PATHINFO_FILENAME);
+            if ($extension == "") {
+            echo 'Could not get extension: Make sure you include the extension in the filename';
+            exit();
+            }
+            if (substr($link, 0, 7) != 'http://' && substr($link, 0, 8) != 'https://' && $link != "") {
+                echo 'Share link is not valid';
+                exit();
+            }
+            //PostgreDatabase
+            $sql = "INSERT INTO item_profile (filename, cid, link, description, ext) VALUES ('$filename', '$cid', '$link', '$description', '$extension')";
+            $dbconn = pg_connect("host=localhost port=5432 dbname=cid_database user='username here' password='password here'") or die('Could not connect: ' . pg_last_error());
+            $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+            pg_close($dbconn);
             ?>
         </main>
         <footer>
