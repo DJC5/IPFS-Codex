@@ -43,3 +43,7 @@ footer {
 .Addition-Form input{
     width: 390px;
 }
+
+.search-form input, textarea {
+    width: 100%;
+}
