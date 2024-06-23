@@ -30,11 +30,6 @@
                 echo "Please fill out all the required fields";
                 exit();
             }
-            //CIDs are 46 characters long
-            if (strlen($cid) > 46 || strlen($cid) < 46) {
-                echo 'CID is either too short or too long';
-                exit();
-            }
             $extension = pathinfo($filename, PATHINFO_EXTENSION);
             $filename = pathinfo($filename, PATHINFO_FILENAME);
             if ($extension == "") {
@@ -47,7 +42,7 @@
             }
             //PostgreDatabase
             $sql = "INSERT INTO item_profile (filename, cid, link, description, ext) VALUES ('$filename', '$cid', '$link', '$description', '$extension')";
-            $dbconn = pg_connect("host=localhost port=5432 dbname=cid_database user='username_here' password='password_here'") or die('Could not connect: ' . pg_last_error());
+            $dbconn = pg_connect("host=localhost port=5432 dbname=cid_database user='' password=''") or die('Could not connect: ' . pg_last_error());
             $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
             pg_close($dbconn);
             echo 'Your CID has been added to the database';

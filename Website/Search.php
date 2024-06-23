@@ -27,27 +27,50 @@
                 <input type="text" name="filename" placeholder="Filename">
                 <input type="text" name="extension" placeholder="Extension">
                 <input type="text" name="cid" placeholder="CID">
-                <input type="date" name="date">
+                <input type="text" name="date" placeholder="yyyy-mm-dd">
                 <textarea rows="4" cols="100" placeholder="Description" name="description"></textarea>
                 <input type="submit" value="Search" name="Search">
             </form>
             <hr>
             <h2>Search Results</h2>
-            <table>
+            <table class ="search-table">
             <?php
-                if (isset($_GET['Search'])) {
+                $selector = "ORDER BY RANDOM()";
+                if (isset($_GET['Search']) ) {
+                    $selector = "";
                     $filename = $_GET['filename'];
+                    if ($filename != "") {
+                        $selector = "filename LIKE '%$filename%' AND";
+                    }
                     $extension = $_GET['extension'];
+                    if ($extension != "") {
+                        $selector = $selector . " ext LIKE '%$extension%' AND";
+                    }
                     $cid = $_GET['cid'];
+                    if ($cid != "") {
+                        $selector = $selector . " cid LIKE '%$cid%' AND";
+                    }
                     $date = $_GET['date'];
+                    if ($date != "") {
+                        $selector = $selector . " creation_date = '$date' AND";
+                    }
                     $description = $_GET['description'];
-                } else {
-                    $sql = "SELECT * FROM item_profile ORDER BY RANDOM() LIMIT 100";
-                    $dbconn = pg_connect("host=localhost port=5432 dbname=cid_database user='username_here' password='password_here'") or die('Could not connect: ' . pg_last_error());
-                    $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
-                    $result = pg_fetch_all($result);
-                    pg_close($dbconn);
-                    echo print_r($result);
+                    if ($description != "") {
+                        $selector = $selector . " description LIKE '%$description%'";
+                    }
+                    $selector = substr($selector, 0, -3);
+                    $selector = "WHERE $selector";
+                }
+                echo "$selector";
+                $sql = "SELECT * FROM item_profile $selector LIMIT 100";
+                $dbconn = pg_connect("host=localhost port=5432 dbname=cid_database user='' password=''") or die('Could not connect: ' . pg_last_error());
+                $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
+                $result = pg_fetch_all($result);
+                pg_close($dbconn);
+                //Display results
+                echo "<tr><th>Filename</th><th>Extension</th><th>CID</th><th>Link</th><th>Date</th><th>Description</th></tr>";
+                foreach ($result as $row) {
+                    echo "<tr><td>$row[filename]</td><td>$row[ext]</td><td>$row[cid]</td><td>$row[link]</td><td>$row[creation_date]</td><td class='table-description'>$row[description]</td></tr>";
                 }
             ?>
             </table>
