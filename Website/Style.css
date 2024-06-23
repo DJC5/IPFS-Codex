@@ -43,3 +43,25 @@ footer {
 .Addition-Form input{
     width: 390px;
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    text-wrap: wrap;
+    word-wrap: break-word;
+}
+
+.search-form input, textarea {
+    width: 100%;
+}
+
+.search-table table, th, tr, td{
+    text-align: center;
+    border: 1px solid black;
+}
+
+.table-description {
+    width: 40%;
+    height: fit-content;
+    word-break: break-all;
+}
