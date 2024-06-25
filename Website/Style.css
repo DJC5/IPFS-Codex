@@ -13,6 +13,10 @@ html, body, footer {
     text-decoration: none;
 }
 
+.nav h3 {
+    display: inline;
+}
+
 .nav a:first-child {
     padding-left: 0;
 }
@@ -29,6 +33,13 @@ header {
     padding-bottom: 30px;
 }
 
+.logo {
+    width: 8em;
+    float: right;
+    margin-top: -6em;
+    margin-right: 1em;
+}
+
 main {
     padding: 1em;
     padding-bottom: 800px;
@@ -41,10 +52,19 @@ footer {
 }
 
 .Addition-Form input{
-    width: 390px;
+    width: 500px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 table {
+    border: 1px solid black;
+    border-radius: 4px;
+    text-align: center;
     border-collapse: collapse;
     width: 100%;
     text-wrap: wrap;
@@ -53,15 +73,31 @@ table {
 
 .search-form input, textarea {
     width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 .search-table table, th, tr, td{
+    padding: 8px;
     text-align: center;
     border: 1px solid black;
+    border-radius: 4px;
 }
 
 .table-description {
     width: 40%;
     height: fit-content;
     word-break: break-all;
+}
+
+.index-article {
+    width: 40%;
+    height: fit-content; 
+    text-align: justify;
+    text-justify: inter-word;
+    padding: 1em;
 }

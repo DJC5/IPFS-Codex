@@ -13,12 +13,13 @@
         <header>
             <br>
             <h1>IPFS Codex</h1>
+            <img src="Resources/Logo.webp" class="logo">
             <nav class="nav">
-                <a href="Index.html"><h3 style="display: inline;">Home</h3></a>
-                <a href="Search.php"><h3 style="display: inline;">Search</h3></a>
-                <a href="Form.html"><h3 style="display: inline;">Add to Database</h3></a>
-                <a href="Guide.html"><h3 style="display: inline;">How To</h3></a>
-                <a href="About.html"><h3 style="display: inline;">About</h3></a>
+                <a href="index.html"><h3>Home</h3></a>
+                <a href="Search.php"><h3>Search</h3></a>
+                <a href="Form.html"><h3>Add to Database</h3></a>
+                <a href="Guide.html"><h3>How To</h3></a>
+                <a href="About.html"><h3>About</h3></a>
             </nav>
         </header>
         <main>
@@ -35,7 +36,7 @@
             <h2>Search Results</h2>
             <table class ="search-table">
             <?php
-                $selector = "ORDER BY RANDOM()";
+                $selector = "ORDER BY RANDOM() LIMIT 100";
                 if (isset($_GET['Search']) ) {
                     $selector = "";
                     $filename = $_GET['filename'];
@@ -56,13 +57,13 @@
                     }
                     $description = $_GET['description'];
                     if ($description != "") {
-                        $selector = $selector . " description LIKE '%$description%'";
+                        $selector = $selector . " description LIKE '%$description%' AND";
                     }
                     $selector = substr($selector, 0, -3);
-                    $selector = "WHERE $selector";
+                    $selector = "WHERE $selector LIMIT 200";
                 }
                 echo "$selector";
-                $sql = "SELECT * FROM item_profile $selector LIMIT 100";
+                $sql = "SELECT * FROM item_profile $selector";
                 $dbconn = pg_connect("host=localhost port=5432 dbname=cid_database user='' password=''") or die('Could not connect: ' . pg_last_error());
                 $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
                 $result = pg_fetch_all($result);

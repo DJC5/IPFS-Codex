@@ -12,18 +12,87 @@
     <body style="color:#383B4B;">
         <header>
             <br>
-            <h1>IPFS Codex</h1>
+            <h1 display="inline">IPFS Codex</h1>
+            <img src="Resources/Logo.webp" class="logo">
             <nav class="nav">
-                <a href="Index.html"><h3 style="display: inline;">Home</h3></a>
-                <a href="Search.php"><h3 style="display: inline;">Search</h3></a>
-                <a href="Form.html"><h3 style="display: inline;">Add to Database</h3></a>
-                <a href="Guide.html"><h3 style="display: inline;">How To</h3></a>
-                <a href="About.html"><h3 style="display: inline;">About</h3></a>
+                <a href="index.html"><h3>Home</h3></a>
+                <a href="Search.php"><h3>Search</h3></a>
+                <a href="Form.html"><h3>Add to Database</h3></a>
+                <a href="Guide.html"><h3>How To</h3></a>
+                <a href="About.html"><h3>About</h3></a>
             </nav>
         </header>
         <main>
             <hr>
-            <p>Web Repository for IPFS CIDs</p>
+            <article class="index-article">
+            <h3>Web Repository for IPFS CIDs</h3>
+            <p>Feel free to: </p>
+            <ul>
+                <li>search the CID database</li>
+                <li>add to the CID database </li>
+                <li>or contribute to the site's development through the GitHub repository</li>
+            </ul>
+            <h3>What is IPFS?</h3>
+                The InterPlanetary File System (IPFS) is a peer-to-peer (P2P) distributed file system that aims to connect all computing devices with the same system of files. 
+                It is designed to make the web faster, safer, and more open. Here are the key concepts and features of IPFS:
+                <ul style="list-style-type:number">
+                    <li>
+                        <h4>Content Addressing:</h4>
+                        <p>
+                            IPFS identifies files by their content rather than their location (URL). Each file is given a unique cryptographic hash, called a Content Identifier (CID). 
+                            This ensures that the content is tamper-proof and verifiable.
+                        </p>
+                    </li>
+                    <li>
+                        <h4>Decentralization:</h4>
+                        <p>
+                            Unlike traditional centralized servers, IPFS is a decentralized system where files are stored across multiple nodes in a network. 
+                            This eliminates single points of failure and reduces dependency on any one server.
+                        </p>
+                    </li>
+                    <li>
+                        <h4>P2P File Sharing:</h4>
+                        <p>
+                            IPFS uses a peer-to-peer network to distribute files. 
+                            When a user requests a file, the system retrieves it from the nearest nodes that have the file, improving efficiency and speed.
+                        </p>
+                    </li>
+                    <li>
+                        <h4>Versioning and Immutability:</h4>
+                        <p>
+                            IPFS supports file versioning. When a file is updated, a new CID is generated for the new version, while the old version remains accessible. 
+                            This immutability ensures that historical data can be reliably retrieved.
+                        </p>
+                    </li>
+                    <li>
+                        <h4>Efficiency:</h4>
+                        <p>
+                            By caching and sharing files across multiple nodes, IPFS can reduce bandwidth usage and improve load times. 
+                            Popular files can be served from many nodes, reducing the load on individual nodes.
+                        </p>
+                    </li>
+                    <li>
+                        <h4>Integration with Blockchain:</h4>
+                        <p>
+                            IPFS can be used in conjunction with blockchain technology to create decentralized applications (DApps). 
+                            For example, IPFS can store the data, while the blockchain manages the access control and transactions.
+                        </p>
+                    </li>
+                    <li>
+                        <h4>Interoperability:</h4>
+                        <p>
+                            IPFS can work with existing web protocols and systems. 
+                            It can serve traditional web content and integrate with the HTTP protocol, making it easier to adopt.
+                        </p>
+                    </li>
+                    <li>
+                        <h4>Security and Privacy:</h4>
+                        <p>
+                            The cryptographic hashing ensures data integrity, and files are encrypted and can be shared privately between users.
+                        </p>
+                    </li>
+                </ul>
+            </article>
             <hr>
         </main>
         <footer>
