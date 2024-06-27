@@ -2,18 +2,18 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="description" content="Web Repository for IPFS CIDs">
+        <meta name="description" content="Web Repository for IPFS CIDs Search">
         <meta name="author" content="DJC5">
-        <meta name="keywords" content="IPFS, CID, IPFS CIDs, IPFS Codex, IPFS Database">
+        <meta name="keywords" content="IPFS, CID, IPFS CIDs, IPFS Codex, IPFS Database, p2p file sharing, interplanetary file system, peer to peer files, peer to peer technology">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>IPFS Codex | Home</title>
+        <title>IPFS Codex | Search</title>
         <link rel="stylesheet" href="Style.css">
     </head>
     <body style="color:#383B4B;">
         <header>
             <br>
             <h1>IPFS Codex</h1>
-            <img src="Resources/Logo.webp" class="logo">
+            <img src="Resources/Logo.webp" alt="Logo" class="logo">
             <nav class="nav">
                 <a href="index.html"><h3>Home</h3></a>
                 <a href="Search.php"><h3>Search</h3></a>

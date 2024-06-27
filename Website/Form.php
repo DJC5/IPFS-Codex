@@ -10,7 +10,7 @@
         <header>
             <br>
             <h1>Addition Form</h1>
-            <img src="Resources/Logo.webp" class="logo">
+            <img src="Resources/Logo.webp" alt="Logo" class="logo">
             <nav class="nav">
                 <a href="index.html"><h3>Home</h3></a>
                 <a href="Search.php"><h3>Search</h3></a>
