@@ -38,10 +38,6 @@
             echo 'Could not get extension: Make sure you include the extension in the filename';
             exit();
             }
-            if (substr($link, 0, 7) != 'http://' && substr($link, 0, 8) != 'https://' && $link != "") {
-                echo 'Share link is not valid';
-                exit();
-            }
             //PostgreDatabase
             $sql = "INSERT INTO item_profile (filename, cid, link, description, ext) VALUES ('$filename', '$cid', '$link', '$description', '$extension')";
             $dbconn = pg_connect("host=localhost port=5432 dbname=cid_database user='' password=''") or die('Could not connect: ' . pg_last_error());

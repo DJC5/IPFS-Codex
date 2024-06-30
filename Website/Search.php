@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="description" content="Web Repository for IPFS CIDs Search">
         <meta name="author" content="DJC5">
-        <meta name="keywords" content="IPFS, CID, IPFS CIDs, IPFS Codex, IPFS Database, p2p file sharing, interplanetary file system, peer to peer files, peer to peer technology">
+        <meta name="keywords" content="IPFS, CID, IPFS CIDs, IPFS Codex, IPFS Database, p2p file sharing, interplanetary file system, peer to peer files, peer to peer technology, peer to peer networking">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>IPFS Codex | Search</title>
         <link rel="stylesheet" href="Style.css">
@@ -25,8 +25,9 @@
         <main>
             <hr>
             <form action="Search.php" method="GET" class="search-form">
+                <input type="text" name="keyword" placeholder="Keyword">
                 <input type="text" name="filename" placeholder="Filename">
-                <input type="text" name="extension" placeholder="Extension">
+                <input type="text" name="extension" placeholder="Extension to search multiple extensions separate by comma *ex. zip,tar,mp4,jpg,bin,pdf*">
                 <input type="text" name="cid" placeholder="CID">
                 <input type="text" name="date" placeholder="yyyy-mm-dd">
                 <textarea rows="4" cols="100" placeholder="Description" name="description"></textarea>
@@ -36,16 +37,25 @@
             <h2>Search Results</h2>
             <table class ="search-table">
             <?php
+                //Query Builder
                 $selector = "ORDER BY RANDOM() LIMIT 100";
                 if (isset($_GET['Search']) ) {
                     $selector = "";
+                    $keyword = $_GET['keyword'];
+                    if ($keyword != "") {
+                        $selector = "filename LIKE '%$keyword%' OR ext LIKE '%$keyword%' OR description LIKE '%$keyword%' AND";
+                    }
                     $filename = $_GET['filename'];
                     if ($filename != "") {
-                        $selector = "filename LIKE '%$filename%' AND";
+                        $selector = $selector . " filename LIKE '%$filename%' AND";
                     }
                     $extension = $_GET['extension'];
                     if ($extension != "") {
-                        $selector = $selector . " ext LIKE '%$extension%' AND";
+                        $extension = explode(",", $extension);
+                        foreach ($extension as $type) {
+                            $selector = $selector . " ext LIKE '%$type%' OR";
+                        }
+                        $selector = substr($selector, 0, -2) . " AND";
                     }
                     $cid = $_GET['cid'];
                     if ($cid != "") {
