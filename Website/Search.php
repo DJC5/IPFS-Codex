@@ -24,7 +24,7 @@
         </header>
         <main>
             <hr>
-            <form action="Search.php" method="GET" class="search-form">
+            <form method="GET" class="search-form">
                 <input type="text" name="keyword" placeholder="Keyword">
                 <input type="text" name="filename" placeholder="Filename">
                 <input type="text" name="extension" placeholder="Extension to search multiple extensions separate by comma *ex. zip,tar,mp4,jpg,bin,pdf*">
@@ -37,8 +37,13 @@
             <h2>Search Results</h2>
             <table class ="search-table">
             <?php
+                //page switcher 
+                $page = 1;
+                if (isset($_GET['page'])) {
+                    $page = $_GET['page'];
+                }
                 //Query Builder
-                $selector = "ORDER BY RANDOM() LIMIT 100";
+                $selector = "";
                 if (isset($_GET['Search']) ) {
                     $selector = "";
                     $keyword = $_GET['keyword'];
@@ -70,21 +75,47 @@
                         $selector = $selector . " description LIKE '%$description%' AND";
                     }
                     $selector = substr($selector, 0, -3);
-                    $selector = "WHERE $selector LIMIT 200";
+                    $selector = "WHERE $selector";
                 }
                 echo "$selector";
-                $sql = "SELECT * FROM item_profile $selector";
-                $dbconn = pg_connect("host=localhost port=5432 dbname=cid_database user='' password=''") or die('Could not connect: ' . pg_last_error());
+                $sql = "SELECT * FROM item_profile $selector LIMIT 100 OFFSET " . ($page - 1) * 100;
+                $dbconn = pg_connect("host=localhost port=5432 dbname=cid_database user='phpdb' password='Djungelskog'") or die('Could not connect: ' . pg_last_error());
                 $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
                 $result = pg_fetch_all($result);
                 pg_close($dbconn);
                 //Display results
                 echo "<tr><th>Filename</th><th>Extension</th><th>CID</th><th>Link</th><th>Date</th><th>Description</th></tr>";
+                $count = count($result);
                 foreach ($result as $row) {
                     echo "<tr><td>$row[filename]</td><td>$row[ext]</td><td>$row[cid]</td><td>$row[link]</td><td>$row[creation_date]</td><td class='table-description'>$row[description]</td></tr>";
                 }
+                echo "</table>";
+                //page switcher
+                if ($count >= 1) {
+                    echo '<button id="next" type="button" onclick="nextPage()" value="' . $page + 1 . '" class="options">Next</button>';
+                }
+                if ($page > 1) {
+                    echo '<button id="previous" type="button" onclick="previousPage()" value="' . $page . '" class="options">Previous</button>';
+                }
             ?>
-            </table>
+            <script>
+                function nextPage() {
+                    var page = document.getElementById("next").value;
+                    if (page > 2) {
+                        window.location.href = window.location.href.replace("?&page=" + (page - 1), "?&page=" + page);
+                    }
+                    else {
+                    window.location.href = window.location.href + "?&page=" + page;
+                    }
+                }
+                function previousPage() {
+                    var page = document.getElementById("previous").value;
+                    window.location.href = window.location.href.replace("?&page=" + page, "?&page=" + (page - 1));
+                    if (page == 2) {
+                        window.location.href = window.location.href.replace("?&page=2" , "");
+                    }
+                }
+            </script>
         </main>
         <footer>
             <nav class="nav">

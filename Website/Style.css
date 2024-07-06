@@ -101,3 +101,17 @@ table {
     text-justify: inter-word;
     padding: 1em;
 }
+
+.options {
+    background-color: #34a8b9;
+    border-radius: 10px;
+    border: none;
+    float: right;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
