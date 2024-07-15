@@ -27,6 +27,7 @@
             $link = $_POST['link'];
             $description = $_POST['description'];
             $extension = pathinfo($filename, PATHINFO_EXTENSION);
+            $type = $_POST['contenttype'];
             //Validation
             if ($filename == "" || $cid == "") {
                 echo "Please fill out all the required fields";
@@ -39,7 +40,7 @@
             exit();
             }
             //PostgreDatabase
-            $sql = "INSERT INTO item_profile (filename, cid, link, description, ext) VALUES ('$filename', '$cid', '$link', '$description', '$extension')";
+            $sql = "INSERT INTO item_profile (filename, cid, link, description, ext, type) VALUES ('$filename', '$cid', '$link', '$description', '$extension', '$type')";
             $dbconn = pg_connect("host=localhost port=5432 dbname=cid_database user='' password=''") or die('Could not connect: ' . pg_last_error());
             $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
             pg_close($dbconn);

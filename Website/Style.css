@@ -61,6 +61,21 @@ footer {
     box-sizing: border-box;
 }
 
+.Addition-Form input[type=radio], .search-form input[type=checkbox] {
+    width: 10%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    margin-left: -3.5em;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.Addition-Form label, .search-form label {
+    margin-left: -3em;
+}
+
 table {
     border: 1px solid black;
     border-radius: 4px;

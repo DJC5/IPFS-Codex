@@ -31,6 +31,22 @@
                 <input type="text" name="cid" placeholder="CID">
                 <input type="text" name="date" placeholder="yyyy-mm-dd">
                 <textarea rows="4" cols="100" placeholder="Description" name="description"></textarea>
+                <input type="checkbox" id="video" name="videotype" value="video">
+                <label for="video">Video</label>
+                <input type="checkbox" id="image" name="imagetype" value="image">
+                <label for="image">Image</label>
+                <input type="checkbox" id="audio" name="audiotype" value="audio">
+                <label for="audio">Audio</label>
+                <input type="checkbox" id="application" name="applicationtype" value="application">
+                <label for="application">Application</label>
+                <input type="checkbox" id="text" name="texttype" value="text">
+                <label for="text">Text</label>
+                <input type="checkbox" id="model" name="modeltype" value="model">
+                <label for="model">Model</label>
+                <input type="checkbox" id="font" name="fonttype" value="font">
+                <label for="font">Font</label>
+                <input type="checkbox" id="other" name="othertype" value="other">
+                <label for="other">Other</label>
                 <input type="submit" value="Search" name="Search">
             </form>
             <hr>
@@ -44,6 +60,7 @@
                 }
                 //Query Builder
                 $selector = "";
+                echo $type;
                 if (isset($_GET['Search']) ) {
                     $selector = "";
                     $keyword = $_GET['keyword'];
@@ -74,11 +91,17 @@
                     if ($description != "") {
                         $selector = $selector . " description LIKE '%$description%' AND";
                     }
+                    $type = array($_GET['videotype'], $_GET['imagetype'], $_GET['audiotype'], $_GET['applicationtype'], $_GET['texttype'], $_GET['modeltype'], $_GET['fonttype'], $_GET['othertype']);
+                    foreach ($type as $value) {
+                        if ($value != "") {
+                            $selector = $selector . " type = '$value' OR";
+                        }
+                    }
                     $selector = substr($selector, 0, -3);
                     $selector = "WHERE $selector";
                 }
                 echo "$selector";
-                $sql = "SELECT * FROM item_profile $selector LIMIT 100 OFFSET " . ($page - 1) * 100;
+                $sql = "SELECT filename, ext, cid, link, creation_date, description FROM item_profile $selector LIMIT 100 OFFSET " . ($page - 1) * 100;
                 $dbconn = pg_connect("host=localhost port=5432 dbname=cid_database user='phpdb' password='Djungelskog'") or die('Could not connect: ' . pg_last_error());
                 $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
                 $result = pg_fetch_all($result);
